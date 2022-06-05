@@ -10,6 +10,7 @@ locals {
   tags      = {
     "env"   = "sbox"
   }
+  egress_rules      = ["all-all"]
 }
 
 
@@ -48,6 +49,6 @@ module "security_group" {
   description        = "Security group to use with K8s EC2 instances"
   vpc_id             = module.vpc.vpc_id
   ingress_with_cidr_blocks = var.sgroup_kube_ingress_with_cidr_blocks
-
+  egress_rules      = local.egress_rules
   tags = local.tags
 }
