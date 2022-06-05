@@ -4,7 +4,12 @@ provider "aws" {
 }
 
 locals {
-  region = "us-east-2"
+  region    = "us-east-2"
+  vpc_name  = "vpc-kube"
+  sg_name   = "sgroup-kube"
+  tags      = {
+    "env"   = "sbox"
+  }
 }
 
 
@@ -28,11 +33,21 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = true
 
-  tags = {
-    env = "sbox"
-  }
+  tags = local.tags 
 
   vpc_tags = {
     Name = "vpc-kube"
   }
+}
+
+module "security_group" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "4.9.0"
+
+  name               = local.sg_name
+  description        = "Security group to use with K8s EC2 instances"
+  vpc_id             = module.vpc.vpc_id
+  ingress_with_cidr_blocks = var.sgroup_kube_ingress_with_cidr_blocks
+
+  tags = local.tags
 }

@@ -13,15 +13,15 @@ output "vpc_cidr_block" {
   value       = module.vpc.vpc_cidr_block
 }
 
-output "default_security_group_id" {
-  description = "The ID of the VPC  security group"
-  value       = module.vpc.security_group_id
-}
+#output "default_security_group_id" {
+#  description = "The ID of the VPC  security group"
+#  value       = module.vpc.security_group_id
+#}
 
-output "default_network_acl_id" {
-  description = "The ID of VPC network ACL"
-  value       = module.vpc.network_acl_id
-}
+#output "default_network_acl_id" {
+#  description = "The ID of VPC network ACL"
+#  value       = module.vpc.network_acl_id
+#}
 
 output "default_route_table_id" {
   description = "The ID of the default route table"
@@ -532,4 +532,14 @@ output "vpc_flow_log_destination_type" {
 output "vpc_flow_log_cloudwatch_iam_role_arn" {
   description = "The ARN of the IAM role used when pushing logs to Cloudwatch log group"
   value       = module.vpc.vpc_flow_log_cloudwatch_iam_role_arn
+}
+
+output "security_group_id" {
+  description = "The ID of the security group"
+  value       = module.security_group.security_group_id
+}
+
+output "security_group_name" {
+  description = "The name of the security group"
+  value       = module.security_group.security_group_name
 }
