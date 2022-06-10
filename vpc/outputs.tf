@@ -13,15 +13,10 @@ output "vpc_cidr_block" {
   value       = module.vpc.vpc_cidr_block
 }
 
-#output "default_security_group_id" {
-#  description = "The ID of the VPC  security group"
-#  value       = module.vpc.security_group_id
-#}
-
-#output "default_network_acl_id" {
-#  description = "The ID of VPC network ACL"
-#  value       = module.vpc.network_acl_id
-#}
+output "azs" {
+  description = "The AZ's of the VPC subnets"
+  value       = module.vpc.azs
+}
 
 output "default_route_table_id" {
   description = "The ID of the default route table"

@@ -10,7 +10,16 @@ locals {
   tags      = {
     "env"   = "sbox"
   }
-  egress_rules      = ["all-all"]
+ ingress_rule_allow_ssh = [{
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "ssh admin access"
+      cidr_blocks = "${data.external.get_ip_addres_using_shell.result.ip_address}/32"
+    }]
+ ingress_rules     = concat (var.sgroup_kube_ingress_with_cidr_blocks, local.ingress_rule_allow_ssh) 
+ egress_rules      = ["all-all"]
+
 }
 
 
@@ -48,7 +57,7 @@ module "security_group" {
   name               = local.sg_name
   description        = "Security group to use with K8s EC2 instances"
   vpc_id             = module.vpc.vpc_id
-  ingress_with_cidr_blocks = var.sgroup_kube_ingress_with_cidr_blocks
+  ingress_with_cidr_blocks = local.ingress_rules     
   egress_rules      = local.egress_rules
   tags = local.tags
 }
