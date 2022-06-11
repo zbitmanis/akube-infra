@@ -16,6 +16,12 @@ locals {
       protocol    = "tcp"
       description = "ssh admin access"
       cidr_blocks = "${data.external.get_ip_addres_using_shell.result.ip_address}/32"
+    },{
+      from_port   = 6443
+      to_port     = 6443
+      protocol    = "tcp"
+      description = "k8s API  access"
+      cidr_blocks = "${data.external.get_ip_addres_using_shell.result.ip_address}/32"
     }]
  ingress_rules     = concat (var.sgroup_kube_ingress_with_cidr_blocks, local.ingress_rule_allow_ssh) 
  egress_rules      = ["all-all"]

@@ -35,5 +35,12 @@ default = [
       description = "Workers NodePort Services"
       cidr_blocks = "172.28.0.0/16"
     },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "ssh connection for debuging purposes"
+      cidr_blocks = "172.28.0.0/16"
+    },
 ]
 }
