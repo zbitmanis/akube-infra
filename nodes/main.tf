@@ -93,7 +93,7 @@ module "ec2_workers" {
 
   for_each = local.worker_instances
 
-  name = "${local.master_prefix}-${each.key}"
+  name = "${local.worker_prefix}-${each.key}"
 
   associate_public_ip_address = lookup(each.value, "associate_public_ip_address", false)
 

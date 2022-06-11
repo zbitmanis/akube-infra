@@ -12,7 +12,7 @@ cat <<EOF > /var/tmp/ansible/kube-node/group_vars/k8s.yaml
 install_kubernetes_node_type: node
 EOF
 ansible-playbook -i inventory/hosts node.yaml
-sleep 60
+sleep 120
 cd /var/tmp/ansible/
 git clone https://github.com/zbitmanis/k8sautojoin.git
 cd k8sautojoin
