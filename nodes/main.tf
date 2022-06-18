@@ -49,11 +49,11 @@ locals {
         }
       ]
     }
-    02 = {
-      instance_type     = "t3.small"
-      availability_zone = element(data.terraform_remote_state.vpc.outputs.azs, 0)
-      subnet_id         = element(data.terraform_remote_state.vpc.outputs.private_subnets, 0)
-    }
+#    02 = {
+#      instance_type     = "t3.small"
+#      availability_zone = element(data.terraform_remote_state.vpc.outputs.azs, 0)
+#      subnet_id         = element(data.terraform_remote_state.vpc.outputs.private_subnets, 0)
+#    }
   }
 }
 
