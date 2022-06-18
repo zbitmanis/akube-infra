@@ -24,3 +24,4 @@ _MASTER=$(echo $_KUBE_JOIN_COMMAND|awk '{ print $3 }')
 _TOKEN=$(echo $_KUBE_JOIN_COMMAND|awk '{ print $5 }')
 _HASH=$(echo $_KUBE_JOIN_COMMAND|awk '{ print $7 }')
 ./k8sautojoin.py -C aws --set -c clustera -t ${_TOKEN} -m $_MASTER -a $_HASH
+ansible-playbook -i inventory/hosts argocd.yaml
