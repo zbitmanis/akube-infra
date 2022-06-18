@@ -1,10 +1,10 @@
 variable "sgroup_kube_ingress_with_cidr_blocks" { 
 type = list(object({
-    from_port       = string
-    to_port         = string
-    protocol        = string
-    description     = string
-    cidr_blocks     = string
+  from_port       = string
+  to_port         = string
+  protocol        = string
+  description     = string
+  cidr_blocks     = string
   }))
 default = [
     {
@@ -40,6 +40,34 @@ default = [
       to_port     = 22
       protocol    = "tcp"
       description = "ssh connection for debuging purposes"
+      cidr_blocks = "172.28.0.0/16"
+    },
+    {
+      from_port   = 179
+      to_port     = 179
+      protocol    = "tcp"
+      description = "BGP - calico"
+      cidr_blocks = "172.28.0.0/16"
+    },
+    {
+      from_port   = 4789
+      to_port     = 4789
+      protocol    = 17
+      description = "VXLAN - calico"
+      cidr_blocks = "172.28.0.0/16"
+    },
+    {
+      from_port   = 5473
+      to_port     = 5473
+      protocol    = 6
+      description = "VXLAN - calico"
+      cidr_blocks = "172.28.0.0/16"
+    },
+    {
+      from_port     = 0
+      to_port     = 65535
+      protocol    = 4
+      description = "IP-in-IP - calico"
       cidr_blocks = "172.28.0.0/16"
     },
 ]
