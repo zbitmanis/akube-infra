@@ -25,6 +25,10 @@ locals {
     }]
  ingress_rules     = concat (var.sgroup_kube_ingress_with_cidr_blocks, local.ingress_rule_allow_ssh) 
  egress_rules      = ["all-all"]
+ general_private_subnet_tags = {"kubernetes.io/role/internal-elb" =  "true"}
+ general_public_subnet_tags  = { "kubernetes.io/role/elb" = "true" }
+ private_subnet_tags = merge(local.general_private_subnet_tags, var.private_subnet_tags)
+ public_subnet_tags  = merge(local.general_public_subnet_tags, var.public_subnet_tags) 
 
 }
 
@@ -43,6 +47,9 @@ module "vpc" {
   azs             = ["${local.region}a", "${local.region}b", "${local.region}c"]
   private_subnets = ["172.28.1.0/24", "172.28.2.0/24", "172.28.3.0/24"]
   public_subnets  = ["172.28.129.0/24", "172.28.130.0/24", "172.28.131.0/24"]
+  
+  private_subnet_tags = local.private_subnet_tags  
+  public_subnet_tags = local.public_subnet_tags  
 
   enable_ipv6 = false
 

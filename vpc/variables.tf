@@ -72,3 +72,18 @@ default = [
     },
 ]
 }
+
+
+variable  "private_subnet_tags" {
+type = map(string)
+default = {
+  "kubernetes.io/cluster/clustera.akube" = "shared"
+  }
+}
+
+variable  "public_subnet_tags" {
+type = map(string)
+default = {
+  "kubernetes.io/cluster/clustera.akube" = "shared"
+  }
+}
