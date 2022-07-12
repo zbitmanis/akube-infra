@@ -87,3 +87,13 @@ default = {
   "kubernetes.io/cluster/clustera.akube" = "shared"
   }
 }
+
+variable "private_subnets_indexes" {
+  type = list
+  default = ["0", "1", "2"]
+}
+
+variable "private_subnets" {
+  type = list
+  default = ["172.28.1.0/24", "172.28.2.0/24", "172.28.3.0/24"]
+}

@@ -29,6 +29,11 @@ locals {
  general_public_subnet_tags  = { "kubernetes.io/role/elb" = "true" }
  private_subnet_tags = merge(local.general_private_subnet_tags, var.private_subnet_tags)
  public_subnet_tags  = merge(local.general_public_subnet_tags, var.public_subnet_tags) 
+ 
+ private_subnets = [for i in var.private_subnets_indexes : {
+      value          = var.private_subnets[0]
+    }
+  ]
 
 }
 
