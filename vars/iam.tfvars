@@ -24,7 +24,8 @@ iam_ec2_policy_statemnts = [
                 "ec2:DescribeInstanceTypes",
                 "ec2:DetachNetworkInterface",
                 "ec2:ModifyNetworkInterfaceAttribute",
-                "ec2:UnassignPrivateIpAddresses"
+                "ec2:UnassignPrivateIpAddresses",
+                "ec2:AssignPrivateIpAddresses"
     ]
   },{ "sid" = "vpcCNItags",
         "effect": "Allow",
@@ -34,6 +35,16 @@ iam_ec2_policy_statemnts = [
         "resources": [
             "arn:aws:ec2:*:*:network-interface/*"
         ]
+  },{
+            "sid": "ECRallow"
+            "effect": "Allow",
+            "actions": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetAuthorizationToken"
+            ],
+            "resources": ["*"]
     }
 
 ]
