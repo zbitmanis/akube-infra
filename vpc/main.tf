@@ -25,8 +25,8 @@ locals {
     }]
  ingress_rules     = concat (var.sgroup_kube_ingress_with_cidr_blocks, local.ingress_rule_allow_ssh) 
  egress_rules      = ["all-all"]
- general_private_subnet_tags = {"kubernetes.io/role/internal-elb" =  "true"}
- general_public_subnet_tags  = { "kubernetes.io/role/elb" = "true" }
+ general_private_subnet_tags = {"kubernetes.io/role/internal-elb" =  "1"}
+ general_public_subnet_tags  = { "kubernetes.io/role/elb" = "1" }
  private_subnet_tags = merge(local.general_private_subnet_tags, var.private_subnet_tags)
  public_subnet_tags  = merge(local.general_public_subnet_tags, var.public_subnet_tags) 
  

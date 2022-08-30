@@ -5,7 +5,7 @@ terraform {
     key = "tfstate/akube/vpc.tfstate"
     region = "us-east-2"
   }
-
+// TODO stick terrafrom to the particlar version across all tf's
   required_version = ">= 1.0"
 
   required_providers {

@@ -70,6 +70,13 @@ default = [
       description = "IP-in-IP - calico"
       cidr_blocks = "172.28.0.0/16"
     },
+    {
+      from_port     = 0
+      to_port     = 65535
+      protocol    = -1
+      description = "all-to-all"
+      cidr_blocks = "172.28.0.0/16"
+    },
 ]
 }
 

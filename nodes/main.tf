@@ -38,7 +38,7 @@ locals {
   
   worker_instances = {
     01 = {
-      instance_type     = "t3.small"
+      instance_type     = "t3.medium"
       availability_zone = element(data.terraform_remote_state.vpc.outputs.azs, 0)
       subnet_id         = element(data.terraform_remote_state.vpc.outputs.private_subnets, 0)
       root_block_device = [
@@ -49,6 +49,18 @@ locals {
         }
       ]
     }
+    02 = {
+      instance_type     = "t3.medium"
+      availability_zone = element(data.terraform_remote_state.vpc.outputs.azs, 0)
+      subnet_id         = element(data.terraform_remote_state.vpc.outputs.private_subnets, 0)
+      root_block_device = [
+        {
+          encrypted   = true
+          volume_type = "gp2"
+          volume_size = 50
+        }
+      ]
+    }  
 #    02 = {
 #      instance_type     = "t3.small"
 #      availability_zone = element(data.terraform_remote_state.vpc.outputs.azs, 0)
